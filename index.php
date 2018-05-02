@@ -32,6 +32,17 @@ $list_lot = [
             "price" => 5400,
             "url_img" => "img/lot-6.jpg"]
 ];
+
+
+function priceFormat($price){
+    $ceilPrice = ceil($price);
+    if ($ceilPrice < 1000){
+        $editPrice = $ceilPrice;
+    }else{
+        $editPrice = number_format($price, 0, '', ' ');
+    }
+    return $editPrice . " ₽";
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -118,7 +129,7 @@ $list_lot = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?= $lot["price"] ?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?= priceFormat($lot['price'])?></span>
                         </div>
                         <div class="lot__timer timer">
                         </div>
