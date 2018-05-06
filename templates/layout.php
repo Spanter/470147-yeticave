@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?= $data['site_name'] ?></title>
+    <title><?= $data['site_name']; ?></title>
     <link href="css/normalize.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -23,10 +23,10 @@
         <nav class="user-menu">
             <? if ($data['is_auth']): ?>
                 <div class="user-menu__image">
-                    <img src="<?= $data['user_avatar'] ?>" width="40" height="40" alt="Пользователь">
+                    <img src="<?= $data['user_avatar']; ?>" width="40" height="40" alt="Пользователь">
                 </div>
                 <div class="user-menu__logged">
-                    <p> <?= $data['user_name']?> </p>
+                    <p> <?= $data['user_name']; ?> </p>
                 </div>
             <? else: ?>
                 <ul class="user-menu__list">
@@ -43,7 +43,7 @@
 </header>
 
 <main class="container">
-    <?= $data['content'] ?>
+    <?= $data['content']; ?>
 </main>
 
 <footer class="main-footer">
@@ -51,7 +51,7 @@
         <ul class="nav__list container">
             <? foreach ($data['list_cat'] as $item): ?>
                 <li class="nav__item">
-                    <a href="all-lots.html"><?= $item?></a>
+                    <a href="all-lots.html"><?= $item; ?></a>
                 </li>
             <? endforeach; ?>
         </ul>

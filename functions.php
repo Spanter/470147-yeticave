@@ -11,7 +11,8 @@ function priceFormat($price){
 }
 function renderTemplate($path, $data){
     if (!file_exists($path)) {
-        return null;
+        $template_Layout = '';
+        return $template_Layout;
     }else {
         extract($data);
         ob_start();
@@ -19,4 +20,5 @@ function renderTemplate($path, $data){
         return ob_get_clean();
     }
 }
+
 ?>
