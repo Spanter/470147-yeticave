@@ -11,8 +11,7 @@ function priceFormat($price){
 }
 function renderTemplate($path, $data){
     if (!file_exists($path)) {
-        $template_Layout = '';
-        return $template_Layout;
+        return '';
     }else {
         extract($data);
         ob_start();

@@ -35,17 +35,8 @@ $list_lot = [
             "url_img" => "img/lot-6.jpg"]
 ];
 
-//Защита от XSS
-foreach ($list_lot as $lot){
-    $lot["name"] = htmlspecialchars($lot["name"]);
-    $lot["category"] = htmlspecialchars($lot["category"]);
-    $lot["price"] = htmlspecialchars($lot["price"]);
-    $lot["url_img"] = htmlspecialchars($lot["url_img"]);
-}
-
-
 $content = renderTemplate('templates/index.php', ['list_lot' => $list_lot]);
-$template_Layout = renderTemplate('templates/layout.php', [
+$template_layout = renderTemplate('templates/layout.php', [
     'site_name' => "Yeticave",
     'is_auth' => $is_auth,
     'user_name' => $user_name,
@@ -55,7 +46,7 @@ $template_Layout = renderTemplate('templates/layout.php', [
 ]);
 
 
-print ($template_Layout);
+print ($template_layout);
 
 
 ?>

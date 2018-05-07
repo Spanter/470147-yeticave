@@ -26,7 +26,7 @@
                     <img src="<?= $data['user_avatar']; ?>" width="40" height="40" alt="Пользователь">
                 </div>
                 <div class="user-menu__logged">
-                    <p> <?= $data['user_name']; ?> </p>
+                    <p> <?= htmlspecialchars($data['user_name']); ?> </p>
                 </div>
             <? else: ?>
                 <ul class="user-menu__list">
