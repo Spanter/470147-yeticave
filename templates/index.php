@@ -41,6 +41,7 @@
                             <span class="lot__cost"><?= priceFormat($lot['price']); ?></span>
                         </div>
                         <div class="lot__timer timer">
+                            <?= finishtime(); ?>
                         </div>
                     </div>
                 </div>
