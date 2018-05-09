@@ -20,4 +20,16 @@ function renderTemplate($path, $data){
     }
 }
 
+date_default_timezone_set("Europe/Moscow");
+
+function finishtime(){
+    $time = strtotime("tomorrow");
+    $day = $time - time();
+    $hours = floor($day/3600);
+    $minutes = floor(($day%3600)/60);
+    $timer = $hours . ":" . $minutes;
+
+    return date("H:i", strtotime($timer));
+}
+
 ?>
