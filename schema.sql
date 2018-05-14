@@ -1,59 +1,57 @@
-create database yeticave default character set utf8 default collate utf8_general_ci;
-use yeticave;
+CREATE DATABASE yeticave DEFAULT CHARACTER SET  utf8 DEFAULT COLLATE utf8_general_ci;
 
-create table users(
-  id int auto_increment,
-  name char,
-  email char,
-  password char,
-  avatar char,
-  date_registration datetime,
-  contact char,
-  primary key (id)
-)engine=InnoDB auto_increment=0 default charset=utf8;
+USE yeticave;
 
-create table categories(
-  id int auto_increment,
-  name char,
-  primary key (id)
-)engine=InnoDB auto_increment=0 default charset=utf8;
+CREATE TABLE users(
+  id INT AUTO_INCREMENT,
+  name CHAR,
+  email CHAR,
+  password CHAR,
+  avatar CHAR,
+  date_registration DATETIME,
+  contact CHAR,
+  PRIMARY KEY (id)
+);
 
-create table bet(
-  id int auto_increment,
-  date_bet datetime,
-  summ int,
-  users_id int,
-  lot_id int,
-  primary key (id),
+CREATE TABLE categories(
+  id INT AUTO_INCREMENT,
+  name CHAR,
+  PRIMARY KEY (id)
+);
 
-  foreign key (users_id) references users(id),
-  foreign key (lot_id) references lot(id)
-)engine=InnoDB auto_increment=0 default charset=utf8;
+CREATE TABLE lot(
+  id INT AUTO_INCREMENT,
+  name CHAR,
+  description CHAR,
+  img CHAR,
+  create_date DATETIME,
+  end_date DATE,
+  start_price INT,
+  finish_price INT,
+  step INT,
+  category_id INT,
+  win_id INT,
+  author_id INT,
+  PRIMARY KEY (id),
 
-create table lot(
-  id int auto_increment,
-  name char,
-  description char,
-  img char,
-  create_date datetime,
-  end_date date,
-  start_price int,
-  finish_price int,
-  step int,
-  category_id int,
-  user_win int,
-  user_author int,
-  primary key (id),
+  FOREIGN KEY (category_id) REFERENCES categories(id),
+  FOREIGN KEY (win_id) REFERENCES users(id),
+  FOREIGN KEY (author_id) REFERENCES users(id)
+);
 
-  foreign key (category_id) references categories(id),
-  foreign key (user_win) references users(id),
-  foreign key (user_author) references users(id)
-)engine=InnoDB auto_increment=0 default charset=utf8;
+CREATE TABLE bet(
+  id INT AUTO_INCREMENT,
+  date_bet DATETIME,
+  summ INT,
+  users_id INT,
+  lot_id INT,
+  PRIMARY KEY (id),
 
+  FOREIGN KEY (users_id) REFERENCES users(id),
+  FOREIGN KEY (lot_id) REFERENCES lot(id)
+);
 
-create unique index uniq_user_name on users(name);
-create unique index uniq_user_email on users(email);
-create unique index uniq_cat_name on categories(name);
-create index lot_category_id on lot(category_id);
-create index user_email on users(email);
-create index lot_user_win on lot(user_win, end_date);
+CREATE UNIQUE INDEX user_on_email ON users(email);
+CREATE INDEX name_on_lot ON lot(name);
+CREATE INDEX description_on_lot ON lot(description);
+CREATE INDEX bet_on_lot ON lot(start_price);
