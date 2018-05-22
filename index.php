@@ -7,6 +7,9 @@ $is_auth = (bool) rand(0, 1);
 $user_name = 'Константин';
 $user_avatar = 'img/user.jpg';
 
+$lot = get_lots($connect);
+$categories = get_categories($connect);
+
 /*
  * $list_cat = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 */
