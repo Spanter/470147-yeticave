@@ -1,11 +1,19 @@
 <?php
 require_once ("functions.php");
-require_once ("data.php");
+require_once ("db_function.php");
 
 $is_auth = (bool) rand(0, 1);
 
 $user_name = 'Константин';
 $user_avatar = 'img/user.jpg';
+
+//Подключение к БД и проверка на подключение
+
+$connect = mysqli_connect('localhost','root','','yeticave');
+
+if ($connect == false){
+    print ("Ошибка в подключения БД: " . mysqli_connect_error());
+}
 
 $lot = get_lots($connect);
 $categories = get_categories($connect);
@@ -52,7 +60,6 @@ $template_layout = renderTemplate('templates/layout.php', [
     'content' => $content,
     'categories' => $categories
 ]);
-
 
 print ($template_layout);
 
