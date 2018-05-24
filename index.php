@@ -1,14 +1,29 @@
 <?php
 require_once ("functions.php");
+require_once ("db_function.php");
 
 $is_auth = (bool) rand(0, 1);
 
 $user_name = 'Константин';
 $user_avatar = 'img/user.jpg';
 
-$list_cat = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
+//Подключение к БД и проверка на подключение
 
-$list_lot = [
+$connect = mysqli_connect('localhost','root','','yeticave');
+
+if ($connect == false){
+    print ("Ошибка в подключения БД: " . mysqli_connect_error());
+}
+
+$lot = get_lots($connect);
+$categories = get_categories($connect);
+
+/*
+ * $list_cat = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
+*/
+
+/*
+ * $list_lot = [
         ["name" => "2014 Rossignol District Snowboard",
             "category" => "Доски и лыжи",
             "price" => 10999,
@@ -34,17 +49,17 @@ $list_lot = [
             "price" => 5400,
             "url_img" => "img/lot-6.jpg"]
 ];
+*/
 
-$content = renderTemplate('templates/index.php', ['list_lot' => $list_lot]);
+$content = renderTemplate('templates/index.php', ['lot' => $lot]);
 $template_layout = renderTemplate('templates/layout.php', [
     'site_name' => "Yeticave",
     'is_auth' => $is_auth,
     'user_name' => $user_name,
     'user_avatar' => $user_avatar,
     'content' => $content,
-    'list_cat' => $list_cat
+    'categories' => $categories
 ]);
-
 
 print ($template_layout);
 
